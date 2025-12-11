@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+
+android {
+    // Namespace বাদ দেওয়া হয়েছে, এটি Manifest এ থাকবে
+    compileSdkVersion 33 // বা আপনার IDE তে যা সাপোর্টেড (30-33)
+    buildToolsVersion "33.0.0"
+
+    defaultConfig {
+        applicationId "com.video.player.pro"
+        minSdkVersion 24 // 23 এর বদলে 21 বা 23 রাখতে পারেন
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    // ভার্সন একটু পুরনো কিন্তু স্ট্যাবল রাখা হয়েছে
+    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    
+    // Glide বাদ দেওয়া হয়েছে ক্র্যাশ এড়াতে
+}

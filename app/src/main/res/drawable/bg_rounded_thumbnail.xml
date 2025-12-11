@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#E0E0E0"/> <!-- ডিফল্ট ব্যাকগ্রাউন্ড কালার -->
+    <corners android:radius="10dp"/> <!-- রাউন্ডেড কর্নার -->
+</shape>

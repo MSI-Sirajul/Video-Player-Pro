@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player Pro - The Ultimate Android Video Experience</title>
+    
+    <!-- Google Fonts: Roboto & Fira Code (For Code Block) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols for Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <style>
+        /* --- VARIABLES (Material 3 Dark Theme based on your App Config) --- */
+        :root {
+            --md-sys-color-primary: #FF8C42;
+            --md-sys-color-on-primary: #362010;
+            --md-sys-color-primary-container: #4D2D23;
+            --md-sys-color-on-primary-container: #FFEDE3;
+            --md-sys-color-background: #000000;
+            --md-sys-color-on-background: #FFEDE3;
+            --md-sys-color-surface: #1F130F;
+            --md-sys-color-on-surface: #E6E1E5;
+            --md-sys-color-surface-variant: #2A180C;
+            --md-sys-color-outline: #A3846B;
+            --border-radius-lg: 24px;
+            --border-radius-xl: 32px;
+            --font-main: 'Outfit', sans-serif;
+            --font-code: 'Fira Code', monospace;
+            --transition: all 0.4s cubic-bezier(0.2, 0, 0, 1);
+        }
+
+        /* --- RESET & BASE STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px var(--md-sys-color-primary-container); }
+            50% { box-shadow: 0 0 20px var(--md-sys-color-primary); }
+            100% { box-shadow: 0 0 5px var(--md-sys-color-primary-container); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(31, 19, 15, 0.7);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 140, 66, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--md-sys-color-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--md-sys-color-primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .btn-github {
+            background-color: var(--md-sys-color-surface-variant);
+            padding: 8px 20px;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            border: 1px solid var(--md-sys-color-outline);
+        }
+
+        .btn-github:hover {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            border-color: var(--md-sys-color-primary);
+            transform: translateY(-2px);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background Gradient Blob */
+        .blob {
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,140,66,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-primary);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 140, 66, 0.3);
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #FFFFFF, #FF8C42);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--md-sys-color-on-surface);
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .btn-primary {
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 140, 66, 0.5);
+        }
+
+        /* Phone Mockup */
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            background: #000;
+            border-radius: 40px;
+            border: 8px solid #2d2d2d;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            animation: float 5s ease-in-out infinite;
+            overflow: hidden;
+        }
+        
+        /* Notch */
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 25px;
+            background: #2d2d2d;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            z-index: 10;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1F130F, #000);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        /* Simulated UI inside phone */
+        .app-header { height: 60px; display: flex; align-items: center; padding: 0 15px; justify-content: space-between; margin-top: 30px;}
+        .app-card { background: #2A180C; height: 180px; margin: 15px; border-radius: 16px; position: relative; overflow: hidden; }
+        .app-card::after { content: '▶'; position: absolute; top:50%; left:50%; transform: translate(-50%, -50%); color: white; font-size: 30px; }
+        .app-list-item { height: 60px; margin: 10px 15px; background: rgba(255,255,255,0.05); border-radius: 12px; display: flex; align-items: center; padding: 0 10px; gap: 10px; }
+        .mini-thumb { width: 40px; height: 40px; background: #FF8C42; border-radius: 8px; }
+        .line { height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; width: 60%; }
+
+        /* --- FEATURES SECTION --- */
+        .features {
+            padding: 80px 10%;
+            background: var(--md-sys-color-surface);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--md-sys-color-primary);
+            margin-bottom: 10px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--md-sys-color-surface-variant);
+            padding: 30px;
+            border-radius: var(--border-radius-lg);
+            transition: var(--transition);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            border-color: var(--md-sys-color-primary);
+            transform: translateY(-5px);
+            background: rgba(255, 140, 66, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            color: var(--md-sys-color-primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            color: #FFF;
+        }
+
+        .feature-text {
+            color: var(--md-sys-color-on-surface);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* --- PERMISSIONS SECTION --- */
+        .permissions {
+            padding: 80px 10%;
+        }
+
+        .permission-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--md-sys-color-surface-variant);
+            padding: 20px;
+            border-radius: 100px;
+            max-width: 500px;
+            margin: 0 auto 20px auto;
+            border: 1px solid var(--md-sys-color-outline);
+        }
+
+        .perm-icon { color: var(--md-sys-color-primary); }
+
+        /* --- CODE BLOCK SECTION --- */
+        .code-section {
+            padding: 80px 10%;
+            background: #0d0d0d;
+            position: relative;
+        }
+
+        .code-window {
+            background: #1e1e1e;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #333;
+        }
+
+        .window-header {
+            background: #252526;
+            padding: 10px 15px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #FF5F56; }
+        .yellow { background: #FFBD2E; }
+        .green { background: #27C93F; }
+        .filename { margin-left: 10px; color: #aaa; font-size: 0.8rem; font-family: var(--font-code); }
+
+        .code-content {
+            padding: 20px;
+            color: #d4d4d4;
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .kwd { color: #569CD6; } /* Keyword */
+        .str { color: #CE9178; } /* String */
+        .cls { color: #4EC9B0; } /* Class */
+        .func { color: #DCDCAA; } /* Function */
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 40px 10%;
+            text-align: center;
+            border-top: 1px solid var(--md-sys-color-surface-variant);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 120px; }
+            .hero-content { margin-bottom: 60px; }
+            .hero-title { font-size: 3rem; }
+            .nav-links { display: none; } /* Simple hide for demo, hamburger menu ideal */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="material-symbols-rounded">play_circle</span>
+            Video Player Pro
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#code">Development</a></li>
+        </ul>
+        <a href="https://github.com/your-username/video-player-pro" target="_blank" class="btn-github">
+            <span class="material-symbols-rounded">code</span> GitHub
+        </a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="blob"></div>
+        
+        <div class="hero-content reveal">
+            <span class="badge">Version 1.0.2 Stable</span>
+            <h1 class="hero-title">The Ultimate Video Experience</h1>
+            <p class="hero-desc">
+                A Material 3 inspired video player for Android with Gesture controls, PiP mode, and Folder management. Smooth, Fast, and Open Source.
+            </p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: start;">
+                <button class="btn-primary">
+                    <span class="material-symbols-rounded">download</span> Download APK
+                </button>
+                <a href="https://github.com/your-username/video-player-pro" target="_blank" class="btn-github">
+                    <span class="material-symbols-rounded">star</span> Star on GitHub
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-image reveal">
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <!-- Simulated App UI -->
+                    <div class="app-header">
+                        <span class="material-symbols-rounded" style="color:white">menu</span>
+                        <span style="color:white; font-weight:bold">Video Player Pro</span>
+                        <span class="material-symbols-rounded" style="color:white">search</span>
+                    </div>
+                    
+                    <div class="app-card">
+                        <!-- Play Icon CSS handled in style -->
+                    </div>
+
+                    <div class="app-list-item">
+                        <div class="mini-thumb"></div>
+                        <div style="width: 100%">
+                            <div class="line" style="margin-bottom: 5px; background: white; width: 80%"></div>
+                            <div class="line" style="width: 40%"></div>
+                        </div>
+                    </div>
+                    <div class="app-list-item">
+                        <div class="mini-thumb"></div>
+                        <div style="width: 100%">
+                            <div class="line" style="margin-bottom: 5px; background: white; width: 80%"></div>
+                            <div class="line" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="features" id="features">
+        <div class="section-header reveal">
+            <h2 class="section-title">Why Video Player Pro?</h2>
+            <p style="color: #bbb;">Designed for performance and aesthetics.</p>
+        </div>
+
+        <div class="features-grid">
+            <!-- Feature 1 -->
+            <div class="feature-card reveal">
+                <span class="material-symbols-rounded feature-icon">picture_in_picture_alt</span>
+                <h3 class="feature-title">PiP Mode</h3>
+                <p class="feature-text">Multitask effortlessly with floating video support. Continue watching while using other apps.</p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="feature-card reveal">
+                <span class="material-symbols-rounded feature-icon">gesture</span>
+                <h3 class="feature-title">Smart Gestures</h3>
+                <p class="feature-text">Swipe to control volume, brightness, and seek. Pinch to zoom up to 400%.</p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="feature-card reveal">
+                <span class="material-symbols-rounded feature-icon">folder_open</span>
+                <h3 class="feature-title">Folder Management</h3>
+                <p class="feature-text">Automatically organizes videos by folders. List and Grid view options available.</p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="feature-card reveal">
+                <span class="material-symbols-rounded feature-icon">lock</span>
+                <h3 class="feature-title">Private Lock</h3>
+                <p class="feature-text">Lock the screen to prevent accidental touches while watching your favorite movies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERMISSIONS SECTION -->
+    <section class="permissions reveal">
+        <div class="section-header">
+            <h2 class="section-title" style="font-size: 2rem;">Required Permissions</h2>
+        </div>
+        <div class="permission-item">
+            <span class="material-symbols-rounded perm-icon">sd_storage</span>
+            <div>
+                <h4 style="color:white">READ_EXTERNAL_STORAGE</h4>
+                <p style="font-size: 0.8rem; color: #aaa;">To list and play video files from your device.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CODE BLOCK SECTION -->
+    <section class="code-section reveal" id="code">
+        <div class="section-header">
+            <h2 class="section-title">Built with Modern Android</h2>
+            <p style="color: #bbb;">Pure Native implementation. No heavy libraries.</p>
+        </div>
+
+        <div class="code-window">
+            <div class="window-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+                <span class="filename">PlayerActivity.java</span>
+            </div>
+            <div class="code-content">
+<pre>
+<span class="kwd">private void</span> <span class="func">setupGestures</span>() {
+    scaleGestureDetector = <span class="kwd">new</span> <span class="cls">ScaleGestureDetector</span>(<span class="kwd">this</span>, <span class="kwd">new</span> <span class="cls">ScaleListener</span>());
+    gestureDetector = <span class="kwd">new</span> <span class="cls">GestureDetector</span>(<span class="kwd">this</span>, <span class="kwd">new</span> <span class="cls">GestureListener</span>());
+
+    videoContainer.<span class="func">setOnTouchListener</span>((v, event) -> {
+        <span class="kwd">if</span> (isLocked) <span class="kwd">return true</span>;
+        
+        scaleGestureDetector.<span class="func">onTouchEvent</span>(event);
+        <span class="kwd">if</span> (!scaleGestureDetector.<span class="func">isInProgress</span>()) {
+            gestureDetector.<span class="func">onTouchEvent</span>(event);
+        }
+        <span class="kwd">return true</span>;
+    });
+}
+</pre>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="https://github.com/your-username/video-player-pro" class="btn-primary">
+                <span class="material-symbols-rounded">terminal</span> View Full Source Code
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p style="color: #777;">&copy; 2025 Video Player Pro. Open Source Project.</p>
+        <p style="font-size: 0.8rem; color: #555; margin-top: 10px;">Designed with Material 3 Principles</p>
+    </footer>
+
+    <!-- JAVASCRIPT FOR ANIMATIONS -->
+    <script>
+        // Intersection Observer for Reveal on Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Console Greeting
+        console.log("%c Video Player Pro ", "background: #FF8C42; color: #000; padding: 5px; border-radius: 5px; font-weight: bold;");
+        console.log("Welcome to the official documentation site.");
+    </script>
+
+</body>
+</html>

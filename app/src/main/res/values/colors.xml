@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- UI Colors (Theme Based) -->
+    <color name="light_primary">#FF8C42</color>
+    <color name="light_background">#F5F5F5</color> <!-- একটু গ্রেশ হোয়াইট -->
+    <color name="light_surface">#FFFFFF</color>
+    <color name="light_text">#362010</color>
+    
+    <color name="dark_primary">#FF6B40</color>
+    <color name="dark_background">#000000</color>
+    <color name="dark_surface">#1F130F</color>
+    <color name="dark_text">#FFEDE3</color>
+
+    <!-- FIXED: Player Specific Colors (Always Visible) -->
+    <color name="player_icon_tint">#FFFFFF</color> 
+    <color name="player_overlay_bg">#40000000</color>
+</resources>

@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.VideoPlayerPro" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Main Brand Colors -->
+        <item name="colorPrimary">@color/light_primary</item>
+        <item name="colorPrimaryDark">@color/light_text</item>
+        <item name="colorAccent">@color/light_primary</item>
+        
+        <!-- UI Colors for Light Mode -->
+        <item name="android:windowBackground">@color/light_background</item> <!-- হালকা ধূসর -->
+        
+        <!-- Text Colors -->
+        <item name="android:textColor">@color/light_text</item>
+        <item name="android:textColorPrimary">@color/light_text</item>
+        <item name="android:textColorSecondary">#80362010</item> <!-- সেমি-ট্রান্সপারেন্ট ব্রাউন -->
+        
+        <!-- Status Bar Configuration -->
+        <item name="android:statusBarColor">@color/light_background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item> <!-- কালো আইকন -->
+        
+        <!-- Custom Attributes Mapping -->
+        <item name="cardBackgroundColor">@color/light_surface</item> <!-- সাদা কার্ড -->
+        <item name="iconTint">@color/light_text</item>
+        <item name="subtitleColor">#A3846B</item>
+        <item name="rippleColor">#20FF8C42</item>
+        
+        <!-- Button Styles -->
+        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>        
+    </style>
+    <style name="SpeedItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+    </style>
+    
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Custom Theme Attributes -->
+    <!-- কার্ডের ব্যাকগ্রাউন্ড কালার -->
+    <attr name="cardBackgroundColor" format="color" />
+    
+    <!-- আইকনের কালার (Light এ কালো/ব্রাউন, Dark এ সাদা) -->
+    <attr name="iconTint" format="color" />
+    
+    <!-- রিপল বা ক্লিক ইফেক্টের কালার -->
+    <attr name="rippleColor" format="color" />
+    
+    <!-- টেক্সটের সেকেন্ডারি কালার (ফোল্ডার নেম বা সাবটাইটেল) -->
+    <attr name="subtitleColor" format="color" />
+</resources>
