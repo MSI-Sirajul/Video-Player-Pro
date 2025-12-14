@@ -31,25 +31,24 @@
 
 ---
 
-## 📱 UI প্রিভিউ (Screenshots)
+##  UI Preview 
 
 <div align="center">
   <table>
     <tr>
-      <td align="center"><b>মেইন লিস্ট (Dark)</b></td>
-      <td align="center"><b>প্লেয়ার ইন্টারফেস</b></td>
-      <td align="center"><b>ফোল্ডার ভিউ</b></td>
+      <td align="center"><b>Player</b></td>
     </tr>
-    <tr>
       <td>
         <!-- নিচের লিংকে আপনার স্ক্রিনশট বসান -->
-        <img src="screenshots/home.png" width="200" alt="Home Screen" />
+        <img src="https://raw.githubusercontent.com/MSI-Sirajul/Video-Player-Pro/refs/heads/main/asset/img3.jpg" width="auto" alt="Home Screen" />
+      </td>
+</table>
+<table>
+      <td>
+        <img src="https://raw.githubusercontent.com/MSI-Sirajul/Video-Player-Pro/refs/heads/main/asset/img1.jpg" width="200" alt="Player Screen" />
       </td>
       <td>
-        <img src="screenshots/player.png" width="200" alt="Player Screen" />
-      </td>
-      <td>
-        <img src="screenshots/folder.png" width="200" alt="Folder Screen" />
+        <img src="https://raw.githubusercontent.com/MSI-Sirajul/Video-Player-Pro/refs/heads/main/asset/img2.jpg" width="200" alt="Folder Screen" />
       </td>
     </tr>
   </table>
