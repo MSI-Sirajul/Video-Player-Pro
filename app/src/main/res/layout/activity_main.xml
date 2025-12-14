@@ -1,116 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawerLayout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="?android:attr/windowBackground">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- TOP SECTION: Title & Search -->
+    <LinearLayout
+        android:id="@+id/top_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?android:attr/windowBackground">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="?android:attr/windowBackground"
+        android:elevation="4dp"
+        android:paddingBottom="8dp">
 
-        <!-- 1. MINI PLAYER CONTAINER (Top) -->
-        <FrameLayout
-            android:id="@+id/miniPlayerContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:elevation="10dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            
-            <include layout="@layout/layout_mini_player"/>
-        </FrameLayout>
-
-        <!-- 2. TOOLBAR CONTAINER -->
-        <!-- এটি মিনি প্লেয়ারের ঠিক নিচে থাকবে -->
-        <FrameLayout
-            android:id="@+id/toolbarContainer"
+        <!-- Title Bar -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
-            android:background="?android:attr/windowBackground"
-            app:layout_constraintTop_toBottomOf="@id/miniPlayerContainer">
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-            <!-- Default Toolbar -->
-            <LinearLayout
-                android:id="@+id/defaultToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="16dp">
+            <TextView
+                android:id="@+id/app_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/app_name"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-                <ImageView android:id="@+id/btnMenu" android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_menu" app:tint="?android:attr/textColorPrimary"/>
-                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="20dp" android:text="@string/app_name" android:textSize="20sp" android:textStyle="bold" android:textColor="?android:attr/textColorPrimary" />
-                <ImageView android:id="@+id/btnViewMode" android:layout_width="28dp" android:layout_height="28dp" android:layout_marginEnd="20dp" android:src="@drawable/ic_sort" app:tint="?android:attr/textColorPrimary"/>
-                <ImageView android:id="@+id/btnSearch" android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_search" app:tint="?android:attr/textColorPrimary"/>
-            </LinearLayout>
+            <!-- View Type Toggle (List -> Card -> Grid) -->
+            <ImageView
+                android:id="@+id/btn_view_type"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="6dp"
+                android:src="@drawable/ic_list_view"
+                android:alpha="0.7"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Change View" />
 
-            <!-- Search Toolbar (Hidden) -->
-            <LinearLayout
-                android:id="@+id/searchToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:visibility="gone"
-                android:background="?android:attr/windowBackground"
-                android:paddingHorizontal="12dp">
-                <EditText android:id="@+id/searchInput" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="@null" android:hint="Search..." android:paddingHorizontal="12dp"/>
-                <ImageView android:id="@+id/btnCloseSearch" android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/ic_close" app:tint="?android:attr/textColorPrimary"/>
-            </LinearLayout>
-        </FrameLayout>
-
-        <!-- 3. LIST CONTAINER -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/toolbarContainer"
-            app:layout_constraintBottom_toTopOf="@id/bottomNav">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:padding="8dp" />
-                
-            <ProgressBar android:id="@+id/progressBar" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:visibility="gone"/>
-            <TextView android:id="@+id/emptyStateText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="No videos found" android:visibility="gone"/>
-        </FrameLayout>
-
-        <!-- 4. BOTTOM NAV -->
-        <LinearLayout
-            android:id="@+id/bottomNav"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/bg_bottom_nav"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent">
-            
-            <LinearLayout android:id="@+id/tabVideos" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:background="?attr/selectableItemBackground">
-                <ImageView android:id="@+id/iconVideo" android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_list" app:tint="?attr/colorPrimary"/>
-                <TextView android:id="@+id/textVideo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Videos" android:textSize="12sp" android:textColor="?attr/colorPrimary"/>
-            </LinearLayout>
-
-            <LinearLayout android:id="@+id/tabFolders" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:background="?attr/selectableItemBackground">
-                <ImageView android:id="@+id/iconFolder" android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_folder" app:tint="?android:attr/textColorSecondary"/>
-                <TextView android:id="@+id/textFolder" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Folders" android:textSize="12sp" android:textColor="?android:attr/textColorSecondary"/>
-            </LinearLayout>
+            <!-- Three Dot Menu -->
+            <ImageView
+                android:id="@+id/btn_menu"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="12dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_more"
+                android:alpha="0.7"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Menu" />
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Search Bar (Below Title) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_search_bar"
+            android:gravity="center_vertical"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
 
-    <!-- Side Drawer -->
-    <LinearLayout android:id="@+id/sideDrawer" android:layout_width="280dp" android:layout_height="match_parent" android:layout_gravity="start" android:background="?android:attr/windowBackground" android:orientation="vertical" android:clickable="true">
-        <include layout="@layout/nav_header"/>
-        <LinearLayout android:id="@+id/menuAbout" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:padding="16dp" android:background="?attr/selectableItemBackground" android:clickable="true">
-            <ImageView android:layout_width="24dp" android:layout_height="24dp" android:src="@drawable/ic_info" app:tint="?android:attr/textColorPrimary"/>
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="About" android:textSize="16sp" android:layout_marginStart="20dp" android:textColor="?android:attr/textColorPrimary"/>
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_search"
+                android:alpha="0.5"
+                android:tint="?android:attr/textColorSecondary"/>
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:background="@null"
+                android:hint="Search videos..."
+                android:textColor="?android:attr/textColorPrimary"
+                android:textColorHint="?android:attr/textColorSecondary"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:imeOptions="actionSearch"/>
         </LinearLayout>
     </LinearLayout>
 
-</androidx.drawerlayout.widget.DrawerLayout>
+    <!-- BOTTOM NAVIGATION BAR -->
+    <LinearLayout
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="?android:attr/windowBackground"
+        android:elevation="8dp"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <!-- History Tab -->
+        <FrameLayout
+            android:id="@+id/tab_history"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground">
+            <ImageView
+                android:id="@+id/icon_history"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_history"
+                android:alpha="0.5"/>
+        </FrameLayout>
+
+        <!-- Videos Tab (Default Active) -->
+        <FrameLayout
+            android:id="@+id/tab_videos"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground">
+            <ImageView
+                android:id="@+id/icon_videos"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_fab_list"
+                android:tint="?android:attr/textColorPrimary"/>
+        </FrameLayout>
+
+        <!-- Folder Tab -->
+        <FrameLayout
+            android:id="@+id/tab_folders"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground">
+            <ImageView
+                android:id="@+id/icon_folders"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_folder"
+                android:alpha="0.5"/>
+        </FrameLayout>
+
+        <!-- Favorites Tab -->
+        <FrameLayout
+            android:id="@+id/tab_favorites"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground">
+            <ImageView
+                android:id="@+id/icon_favorites"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_heart_empty"
+                android:alpha="0.5"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- MAIN CONTENT (Grid/List) -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top_container"
+        android:layout_above="@id/bottom_nav">
+
+        <GridView
+            android:id="@+id/videos_grid"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            android:clipToPadding="false"
+            android:numColumns="1" 
+            android:horizontalSpacing="0dp"
+            android:verticalSpacing="0dp"
+            android:scrollbars="vertical"
+            android:stretchMode="columnWidth" />
+
+        <!-- Empty State -->
+        <TextView
+            android:id="@+id/txt_empty_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="No videos found."
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+    <!-- Overlay Divider for Nav Bar -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@id/bottom_nav"
+        android:background="#1F000000"/>
+
+</RelativeLayout>

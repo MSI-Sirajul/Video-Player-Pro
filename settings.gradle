@@ -6,5 +6,5 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "Video Player Pro"
+rootProject.name = "Video-Player-Pro"
 include ':app'

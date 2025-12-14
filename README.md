@@ -11,11 +11,11 @@
   <br>
 
   <!-- BADGES -->
-  <a href="https://github.com/YOUR_USERNAME/REPO_NAME/releases">
-    <img src="https://img.shields.io/github/v/release/YOUR_USERNAME/REPO_NAME?style=for-the-badge&color=FF8C42&label=LATEST%20RELEASE" alt="Release" />
+  <a href="https://github.com/MSI-Sirajul/Video-Player-Pro/releases">
+    <img src="https://img.shields.io/github/v/release/MSI-Sirajul/REPO_NAME?style=for-the-badge&color=FF8C42&label=LATEST%20RELEASE" alt="Release" />
   </a>
   
-  <a href="https://github.com/YOUR_USERNAME">
+  <a href="https://github.com/MSI-Sirajul">
     <img src="https://img.shields.io/badge/DEVELOPER-PROFILE-1F130F?style=for-the-badge&logo=github&logoColor=white" alt="Developer" />
   </a>
 
@@ -84,7 +84,7 @@
 ## 📥 ডাউনলোড (Download)
 
 <div align="center">
-  <a href="https://github.com/YOUR_USERNAME/REPO_NAME/releases/latest">
+  <a href="https://github.com/MSI-Sirajul/Video-Player-Pro/releases/latest">
     <img src="https://img.shields.io/badge/DOWNLOAD%20APK-FF8C42?style=for-the-badge&logo=android&logoColor=black" alt="Download APK" />
   </a>
 </div>
@@ -92,5 +92,5 @@
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by <a href="https://github.com/YOUR_USERNAME">Your Name</a></sub>
+  <sub>Built with ❤️ by <a href="https://github.com/MSI-Sirajul">Your Name</a></sub>
 </div>

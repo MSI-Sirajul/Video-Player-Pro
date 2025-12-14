@@ -3,82 +3,93 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="6dp"
-    android:background="?attr/selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true">
+    android:padding="8dp"
+    android:background="?android:attr/selectableItemBackground">
 
-    <!-- Card Container (Visual Card) -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/bg_item_card"
-        android:padding="0dp"
+        android:background="@drawable/bg_card_rounded"
         android:elevation="2dp">
 
-        <!-- Thumbnail Area (Rounded Top) -->
+        <!-- Large Thumbnail -->
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:background="@drawable/bg_rounded_thumbnail"
-            android:clipToOutline="true">
-            
+            android:layout_height="200dp">
+
             <ImageView
-                android:id="@+id/thumbnail"
+                android:id="@+id/img_thumbnail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@android:drawable/ic_menu_gallery"
-                android:contentDescription="Thumbnail"/>
-                
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:contentDescription="Play"/>
-                <!-- src="@drawable/ic_play" removed to avoid error if missing, add if exists -->
-                
+                android:src="@drawable/ic_video_placeholder" />
+
             <TextView
-                android:id="@+id/videoDuration"
+                android:id="@+id/txt_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
-                android:layout_margin="6dp"
-                android:background="#99000000"
-                android:paddingHorizontal="6dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_card_rounded"
+                android:backgroundTint="#99000000"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
                 android:text="00:00"
-                android:textColor="#FFF"
-                android:textSize="11sp"/>
+                android:textColor="@color/white"
+                android:textSize="12sp" />
         </FrameLayout>
 
-        <!-- Info Area -->
+        <!-- Details Bottom -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
+            android:orientation="horizontal"
+            android:padding="12dp">
 
-            <TextView
-                android:id="@+id/videoTitle"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Video Title"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:textColor="?android:attr/textColorPrimary"/>
-                
-            <TextView
-                android:id="@+id/videoSize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Size info"
-                android:textSize="11sp"
-                android:textColor="?android:attr/textColorSecondary"
-                android:layout_marginTop="4dp"/>
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Video Title"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
+
+                <TextView
+                    android:id="@+id/txt_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="1080p • 50 MB"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="12sp" />
+                 
+                 <!-- Hidden View for Compatibility -->
+                 <TextView
+                    android:id="@+id/txt_resolution"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btn_item_more"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="top"
+                android:src="@drawable/ic_more"
+                android:alpha="0.6"
+                android:padding="2dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"/>
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

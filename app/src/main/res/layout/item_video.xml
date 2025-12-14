@@ -1,118 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
-    android:background="@drawable/bg_item_card"
-    android:clickable="true"
-    android:focusable="true"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="6dp">
 
-    <!-- Thumbnail Area -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="180dp">
-
-        <!-- Thumbnail Image -->
-        <ImageView
-            android:id="@+id/thumbnail"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_rounded_card" 
-            android:scaleType="centerCrop"
-            android:clipToOutline="true"
-            android:src="@android:drawable/ic_menu_gallery" />
-
-        <!-- Overlay Dark Gradient -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#33000000" />
-
-        <!-- Play Icon Center -->
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_play"
-            app:tint="#FFFFFF" />
-            
-        <!-- Duration Badge -->
-        <TextView
-            android:id="@+id/videoDuration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="8dp"
-            android:background="#99000000"
-            android:paddingHorizontal="6dp"
-            android:paddingVertical="2dp"
-            android:text="00:00"
-            android:textColor="#FFFFFF"
-            android:textSize="12sp"
-            android:textStyle="bold" />
-    </FrameLayout>
-
-    <!-- Info Area -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical">
+        android:orientation="vertical"
+        android:background="@drawable/bg_card_rounded"
+        android:elevation="2dp">
 
-        <!-- Title & Subtitle -->
+        <!-- Thumbnail Container -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp">
+
+            <ImageView
+                android:id="@+id/img_thumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_video_placeholder"
+                android:background="#EEE" />
+
+            <!-- Duration Badge -->
+            <TextView
+                android:id="@+id/txt_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="8dp"
+                android:background="@drawable/bg_card_rounded"
+                android:backgroundTint="#99000000"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:text="00:00"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <!-- Video Info -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
-                android:id="@+id/videoTitle"
+                android:id="@+id/txt_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Video Title Here"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="16sp"
+                android:text="Video Title"
+                android:textColor="@color/light_text_primary"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:ellipsize="end" />
-                
-            <!-- Folder Name -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical"
                 android:layout_marginTop="4dp">
-                
-                <ImageView
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
-                    android:src="@drawable/ic_folder"
-                    app:tint="?android:attr/textColorSecondary"
-                    android:layout_marginEnd="4dp"/>
 
                 <TextView
+                    android:id="@+id/txt_resolution"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Internal Storage"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="12sp" />
+                    android:text="1080p"
+                    android:textColor="@color/dark_accent_neon"
+                    android:textSize="10sp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/txt_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50 MB"
+                    android:textColor="@color/light_text_secondary"
+                    android:textSize="10sp" />
             </LinearLayout>
-
         </LinearLayout>
-
-        <!-- More Option Icon -->
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@android:drawable/ic_menu_more"
-            app:tint="?android:attr/textColorSecondary"
-            android:padding="4dp"/>
     </LinearLayout>
-
 </LinearLayout>

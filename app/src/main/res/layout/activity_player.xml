@@ -1,207 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout 
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/player_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="@color/black"
     android:keepScreenOn="true">
 
-    <!-- 1. VIDEO VIEW CONTAINER -->
-    <FrameLayout
-        android:id="@+id/videoContainer"
+    <!-- Video Rendering Surface -->
+    <SurfaceView
+        android:id="@+id/surface_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000">
-        
-        <VideoView
-            android:id="@+id/videoView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center" />
-    </FrameLayout>
+        android:layout_gravity="center" />
+    <!-- Video Rendering Surface -->
+    <SurfaceView
+        android:id="@+id/surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
 
-    <!-- 2. GESTURE FEEDBACK -->
-    <LinearLayout
-        android:id="@+id/gestureLayout"
+    <!-- SUBTITLE VIEW (Add this block) -->
+    <TextView
+        android:id="@+id/txt_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="60dp" 
+        android:gravity="center"
+        android:padding="8dp"
+        android:text=""
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:shadowColor="#000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"
+        android:elevation="1dp"
+        android:visibility="gone"/>
+
+    <!-- Gesture Overlay (Center) -->
+    <include
+        layout="@layout/layout_gesture_overlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_rounded_card"
-        android:backgroundTint="#80000000"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_gravity="center" />
 
-        <ImageView
-            android:id="@+id/gestureIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_search"
-            android:tint="#FFFFFF"
-            android:layout_marginBottom="8dp"/>
+    <!-- Custom Controls Overlay -->
+    <include
+        android:id="@+id/custom_controller"
+        layout="@layout/controls_player" />
 
-        <TextView
-            android:id="@+id/gestureText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="100%"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-    <!-- 3. UNLOCK BUTTON (Floating & Hidden Initially) -->
-    <!-- এটি শুধুমাত্র লক অবস্থায় দেখা যাবে -->
-    <ImageButton
-        android:id="@+id/btnUnlockOverlay"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_margin="30dp"
-        android:background="@drawable/bg_circle_white"
-        android:src="@drawable/ic_lock_open"
-        android:padding="10dp"
-        android:scaleType="fitCenter"
-        android:tint="#000000"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.5"/> 
-
-    <!-- 4. CONTROLS OVERLAY -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/controlsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="visible">
-
-        <!-- TOP BAR -->
-        <LinearLayout
-            android:id="@+id/topBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingHorizontal="8dp"
-            android:paddingVertical="12dp"
-            android:background="@drawable/bg_gradient_top"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_back"
-                android:padding="8dp"
-                android:scaleType="fitCenter"
-                android:tint="#FFFFFF" />
-
-            <TextView
-                android:id="@+id/txtVideoTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginHorizontal="8dp"
-                android:text="Video Title"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:ellipsize="end"
-                android:maxLines="1" />
-
-            <!-- Top Icons -->
-            <ImageButton android:id="@+id/btnScreenshot" android:layout_width="40dp" android:layout_height="40dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_screenshot" android:padding="8dp" android:scaleType="fitCenter" android:tint="#FFFFFF" />
-            <ImageButton android:id="@+id/btnPip" android:layout_width="40dp" android:layout_height="40dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_pip" android:padding="8dp" android:scaleType="fitCenter" android:tint="#FFFFFF" />
-            <ImageButton android:id="@+id/btnScale" android:layout_width="40dp" android:layout_height="40dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_scale" android:padding="8dp" android:scaleType="fitCenter" android:tint="#FFFFFF" />
-            <ImageButton android:id="@+id/btnMute" android:layout_width="40dp" android:layout_height="40dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_volume_on" android:padding="8dp" android:scaleType="fitCenter" android:tint="#FFFFFF" />
-        </LinearLayout>
-
-        <!-- BOTTOM CONTAINER -->
-        <LinearLayout
-            android:id="@+id/bottomContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/bg_gradient_bottom"
-            android:paddingBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <!-- Time & SeekBar -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:paddingHorizontal="12dp"
-                android:layout_marginBottom="4dp">
-                <TextView android:id="@+id/txtCurrentTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00:00" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
-                <SeekBar android:id="@+id/seekBar" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginHorizontal="8dp" android:progressTint="@color/light_primary" android:thumbTint="@color/light_primary" android:secondaryProgressTint="#80FFFFFF" />
-                <TextView android:id="@+id/txtTotalTime" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="00:00" android:textColor="#FFFFFF" android:textSize="12sp" android:textStyle="bold"/>
-            </LinearLayout>
-
-            <!-- Controls Row -->
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="4dp">
-
-                <!-- Lock Button (For Locking) -->
-                <ImageButton
-                    android:id="@+id/btnLock"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_lock"
-                    android:padding="8dp"
-                    android:scaleType="fitCenter"
-                    android:tint="#FFFFFF" />
-
-                <!-- Center Controls (UPDATED BACKGROUND) -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center">
-
-                    <ImageButton android:id="@+id/btnPrev" android:layout_width="45dp" android:layout_height="45dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_prev_player" android:padding="10dp" android:scaleType="fitCenter" android:tint="#FFFFFF" />
-
-                    <!-- Play Button with White Circle Background -->
-                    <ImageButton
-                        android:id="@+id/btnPlayPause"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
-                        android:layout_marginHorizontal="20dp"
-                        android:background="@drawable/bg_circle_white"
-                        android:src="@drawable/ic_pause_player"
-                        android:padding="14dp"
-                        android:scaleType="fitCenter"
-                        android:tint="#000000" /> 
-
-                    <ImageButton android:id="@+id/btnNext" android:layout_width="45dp" android:layout_height="45dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_next_player" android:padding="10dp" android:scaleType="fitCenter" android:tint="#FFFFFF" />
-                </LinearLayout>
-
-                <!-- Right Controls -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:gravity="center_vertical">
-                    <TextView android:id="@+id/btnSpeed" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1.0x" android:textColor="#FFFFFF" android:textStyle="bold" android:textSize="14sp" android:padding="8dp" android:layout_marginEnd="4dp"/>
-                    <ImageButton android:id="@+id/btnRotate" android:layout_width="40dp" android:layout_height="40dp" android:background="?attr/selectableItemBackgroundBorderless" android:src="@drawable/ic_rotate" android:padding="8dp" android:scaleType="fitCenter" android:tint="#FFFFFF" />
-                </LinearLayout>
-            </RelativeLayout>
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
