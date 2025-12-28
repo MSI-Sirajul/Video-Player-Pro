@@ -1,90 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="6dp">
+    android:layout_height="@dimen/_60sdp"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/_10sdp"
+    android:paddingVertical="@dimen/_4sdp"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/bg_card_rounded"
-        android:elevation="2dp">
-
-        <!-- Thumbnail Container -->
-        <FrameLayout
+    <!-- Thumbnail (Smaller & Rounded) -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/_85sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_6sdp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/secondary_bg">
+        
+        <ImageView
+            android:id="@+id/img_thumbnail"
             android:layout_width="match_parent"
-            android:layout_height="140dp">
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
+            
+        <!-- Duration Overlay -->
+        <TextView
+            android:id="@+id/tv_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:background="#99000000"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_8ssp"
+            android:paddingHorizontal="@dimen/_3sdp"
+            android:paddingVertical="@dimen/_1sdp"
+            android:text="00:00"/>
+    </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/img_thumbnail"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_video_placeholder"
-                android:background="#EEE" />
+    <!-- Text Info -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-            <!-- Duration Badge -->
-            <TextView
-                android:id="@+id/txt_duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="8dp"
-                android:background="@drawable/bg_card_rounded"
-                android:backgroundTint="#99000000"
-                android:paddingStart="6dp"
-                android:paddingEnd="6dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:text="00:00"
-                android:textColor="@color/white"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-        </FrameLayout>
-
-        <!-- Video Info -->
-        <LinearLayout
+        <TextView
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <TextView
-                android:id="@+id/txt_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Video Title"
-                android:textColor="@color/light_text_primary"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:maxLines="2"
-                android:ellipsize="end" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="4dp">
-
-                <TextView
-                    android:id="@+id/txt_resolution"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1080p"
-                    android:textColor="@color/dark_accent_neon"
-                    android:textSize="10sp"
-                    android:layout_marginEnd="8dp"/>
-
-                <TextView
-                    android:id="@+id/txt_size"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="50 MB"
-                    android:textColor="@color/light_text_secondary"
-                    android:textSize="10sp" />
-            </LinearLayout>
-        </LinearLayout>
+            android:text="Video Title"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_11ssp"
+            android:textStyle="bold"
+            android:maxLines="2"
+            android:ellipsize="end"/>
     </LinearLayout>
+
+    <!-- Option Menu -->
+    <ImageView
+        android:id="@+id/img_menu_more"
+        android:layout_width="@dimen/_22sdp"
+        android:layout_height="@dimen/_22sdp"
+        android:padding="@dimen/_4sdp"
+        android:src="@drawable/ic_menu_3dot"
+        app:tint="@color/secondary_text"/>
+
 </LinearLayout>

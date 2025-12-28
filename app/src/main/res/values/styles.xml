@@ -1,39 +1,38 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.VideoPlayerPro" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <!-- Main Brand Colors -->
-        <item name="colorPrimary">@color/light_primary</item>
-        <item name="colorPrimaryDark">@color/light_text</item>
-        <item name="colorAccent">@color/light_primary</item>
+    <style name="Theme.VideoPlayer" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
         
-        <!-- UI Colors for Light Mode -->
-        <item name="android:windowBackground">@color/light_background</item> <!-- হালকা ধূসর -->
-        
-        <!-- Text Colors -->
-        <item name="android:textColor">@color/light_text</item>
-        <item name="android:textColorPrimary">@color/light_text</item>
-        <item name="android:textColorSecondary">#80362010</item> <!-- সেমি-ট্রান্সপারেন্ট ব্রাউন -->
-        
-        <!-- Status Bar Configuration -->
-        <item name="android:statusBarColor">@color/light_background</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item> <!-- কালো আইকন -->
-        
-        <!-- Custom Attributes Mapping -->
-        <item name="cardBackgroundColor">@color/light_surface</item> <!-- সাদা কার্ড -->
-        <item name="iconTint">@color/light_text</item>
-        <item name="subtitleColor">#A3846B</item>
-        <item name="rippleColor">#20FF8C42</item>
-        
-        <!-- Button Styles -->
-        <item name="android:buttonStyle">@style/Widget.AppCompat.Button.Borderless</item>        
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/primary_bg</item>
+        <item name="android:textColor">@color/primary_text</item>
     </style>
-    <style name="SpeedItem">
+
+    <style name="Theme.VideoPlayer.FullScreen" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:keepScreenOn">true</item>
+        <item name="android:windowBackground">@color/black</item>
+    </style>
+    <!-- Popup Menu Styles -->
+    <style name="PopupMenuItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">10dp</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:drawablePadding">@dimen/_10sdp</item>
+        <item name="android:paddingHorizontal">@dimen/_12sdp</item>
+        <item name="android:paddingVertical">@dimen/_8sdp</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:background">?attr/selectableItemBackground</item>
     </style>
-    
+
+    <style name="PopupMenuDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#1AFFFFFF</item>
+        <item name="android:layout_marginVertical">@dimen/_2sdp</item>
+    </style>
 </resources>

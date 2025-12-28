@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Light Theme Colors -->
-    <color name="light_bg">#FAFAFA</color>
-    <color name="light_surface">#FFFFFF</color>
-    <color name="light_text_primary">#212121</color>
-    <color name="light_text_secondary">#757575</color>
-    <color name="light_accent">#424242</color>
-    <color name="light_divider">#E0E0E0</color>
+    <!-- Standard System Colors (Required to fix errors) -->
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#2196F3</color>
+    <color name="accent">#2196F3</color>
 
-    <!-- Dark Theme Colors -->
-    <color name="dark_bg">#000000</color>
-    <color name="dark_surface">#121212</color>
-    <color name="dark_text_primary">#EEEEEE</color>
-    <color name="dark_text_secondary">#B0B0B0</color>
-    <color name="dark_accent_neon">#00E5FF</color> <!-- Neon Cyan for highlights -->
-    <color name="dark_divider">#2C2C2C</color>
-
-    <!-- Common Colors -->
-    <color name="overlay_black_40">#66000000</color>
-    <color name="transparent">#00000000</color>
+    <!-- App Background Colors -->
+    <color name="primary_bg">#FFFFFF</color>
+    <color name="secondary_bg">#F5F5F5</color>
+    
+    <!-- Text Colors -->
+    <color name="primary_text">#000000</color>
+    <color name="secondary_text">#666666</color>
+    
+    <!-- Custom Names needed for your specific layout errors -->
+    <color name="background_dark">#000000</color>
+    <color name="text_color_dark">#FFFFFF</color>
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_dark">#B3B3B3</color>
+    
+    <!-- UI Elements -->
+    <color name="divider">#E0E0E0</color>
+    <color name="overlay_dark">#99000000</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
 </resources>

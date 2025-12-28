@@ -1,54 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/player_root"
+<androidx.drawerlayout.widget.DrawerLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
-    android:keepScreenOn="true">
+    android:background="@color/black">
 
-    <!-- Video Rendering Surface -->
-    <SurfaceView
-        android:id="@+id/surface_view"
+    <!-- MAIN CONTENT CONTAINER -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/player_root_container"
         android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.media3.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:use_controller="false"
+            app:resize_mode="fit"
+            app:surface_type="texture_view" 
+            app:shutter_background_color="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+            <!-- app:surface_type="texture_view" লাইনটি যুক্ত করা হয়েছে -->
+
+        <!-- CONTROLLER OVERLAY (Included from separate file) -->
+        <include 
+            layout="@layout/layout_player_controls"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- SIDE DRAWER (Compact & Minimal) -->
+    <LinearLayout
+        android:id="@+id/side_drawer"
+        android:layout_width="@dimen/_220sdp" 
         android:layout_height="match_parent"
-        android:layout_gravity="center" />
-    <!-- Video Rendering Surface -->
-    <SurfaceView
-        android:id="@+id/surface_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center" />
+        android:layout_gravity="end"
+        android:background="@color/secondary_bg"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true">
+        
+        <!-- Sidebar Title (Centered & Small) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Video List"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_8sdp"
+            android:background="@color/primary_bg"/>
 
-    <!-- SUBTITLE VIEW (Add this block) -->
-    <TextView
-        android:id="@+id/txt_subtitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="60dp" 
-        android:gravity="center"
-        android:padding="8dp"
-        android:text=""
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:shadowColor="#000000"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="4"
-        android:elevation="1dp"
-        android:visibility="gone"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_queue"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
 
-    <!-- Gesture Overlay (Center) -->
-    <include
-        layout="@layout/layout_gesture_overlay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center" />
-
-    <!-- Custom Controls Overlay -->
-    <include
-        android:id="@+id/custom_controller"
-        layout="@layout/controls_player" />
-
-</FrameLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

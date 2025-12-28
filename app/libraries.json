@@ -1,1 +1,74 @@
-[]
+[
+  {
+    "artifactId": "appcompat",
+    "excludes": [],
+    "groupId": "androidx.appcompat",
+    "versionName": "1.6.1"
+  },
+  {
+    "artifactId": "constraintlayout",
+    "excludes": [],
+    "groupId": "androidx.constraintlayout",
+    "versionName": "2.1.4"
+  },
+  {
+    "artifactId": "recyclerview",
+    "excludes": [],
+    "groupId": "androidx.recyclerview",
+    "versionName": "1.3.2"
+  },
+  {
+    "artifactId": "cardview",
+    "excludes": [],
+    "groupId": "androidx.cardview",
+    "versionName": "1.0.0"
+  },
+  {
+    "artifactId": "glide",
+    "excludes": [],
+    "groupId": "com.github.bumptech.glide",
+    "versionName": "4.16.0"
+  },
+  {
+    "artifactId": "media3-exoplayer",
+    "excludes": [],
+    "groupId": "androidx.media3",
+    "versionName": "1.2.0"
+  },
+  {
+    "artifactId": "media3-ui",
+    "excludes": [],
+    "groupId": "androidx.media3",
+    "versionName": "1.2.0"
+  },
+  {
+    "artifactId": "media3-session",
+    "excludes": [],
+    "groupId": "androidx.media3",
+    "versionName": "1.2.0"
+  },
+  {
+    "artifactId": "sdp-android",
+    "excludes": [],
+    "groupId": "com.intuit.sdp",
+    "versionName": "1.1.0"
+  },
+  {
+    "artifactId": "ssp-android",
+    "excludes": [],
+    "groupId": "com.intuit.ssp",
+    "versionName": "1.1.0"
+  },
+  {
+    "artifactId": "lottie",
+    "excludes": [],
+    "groupId": "com.airbnb.android",
+    "versionName": "6.1.0"
+  },
+  {
+    "artifactId": "viewpager2",
+    "excludes": [],
+    "groupId": "androidx.viewpager2",
+    "versionName": "1.0.0"
+  }
+]

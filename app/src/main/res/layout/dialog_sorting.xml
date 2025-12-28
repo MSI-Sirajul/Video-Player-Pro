@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_220sdp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_popup_menu"
+    android:padding="@dimen/_15sdp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sort By"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/_10sdp"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/sort_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name (A-Z)"
+            android:textColor="@color/secondary_text"
+            android:buttonTint="@color/colorAccent"
+            android:paddingStart="@dimen/_8sdp"/>
+
+        <RadioButton
+            android:id="@+id/sort_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date (Newest First)"
+            android:textColor="@color/secondary_text"
+            android:buttonTint="@color/colorAccent"
+            android:paddingStart="@dimen/_8sdp"/>
+
+        <RadioButton
+            android:id="@+id/sort_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Size (Largest First)"
+            android:textColor="@color/secondary_text"
+            android:buttonTint="@color/colorAccent"
+            android:paddingStart="@dimen/_8sdp"/>
+            
+        <RadioButton
+            android:id="@+id/sort_length"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Duration (Longest First)"
+            android:textColor="@color/secondary_text"
+            android:buttonTint="@color/colorAccent"
+            android:paddingStart="@dimen/_8sdp"/>
+    </RadioGroup>
+
+</LinearLayout>

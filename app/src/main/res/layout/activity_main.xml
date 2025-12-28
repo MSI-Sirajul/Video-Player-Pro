@@ -1,209 +1,199 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/root_layout"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/windowBackground">
+    android:background="@color/primary_bg">
 
-    <!-- TOP SECTION: Title & Search -->
-    <LinearLayout
-        android:id="@+id/top_container"
+    <!-- 1. TOP BAR -->
+    <RelativeLayout
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="?android:attr/windowBackground"
-        android:elevation="4dp"
-        android:paddingBottom="8dp">
-
-        <!-- Title Bar -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="?android:attr/actionBarSize"
-            android:gravity="center_vertical"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp">
-
-            <TextView
-                android:id="@+id/app_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/app_name"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <!-- View Type Toggle (List -> Card -> Grid) -->
-            <ImageView
-                android:id="@+id/btn_view_type"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:padding="6dp"
-                android:src="@drawable/ic_list_view"
-                android:alpha="0.7"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Change View" />
-
-            <!-- Three Dot Menu -->
-            <ImageView
-                android:id="@+id/btn_menu"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="12dp"
-                android:padding="4dp"
-                android:src="@drawable/ic_more"
-                android:alpha="0.7"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Menu" />
-        </LinearLayout>
-
-        <!-- Search Bar (Below Title) -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/bg_search_bar"
-            android:gravity="center_vertical"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ic_search"
-                android:alpha="0.5"
-                android:tint="?android:attr/textColorSecondary"/>
-
-            <EditText
-                android:id="@+id/et_search"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="8dp"
-                android:background="@null"
-                android:hint="Search videos..."
-                android:textColor="?android:attr/textColorPrimary"
-                android:textColorHint="?android:attr/textColorSecondary"
-                android:textSize="14sp"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:imeOptions="actionSearch"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- BOTTOM NAVIGATION BAR -->
-    <LinearLayout
-        android:id="@+id/bottom_nav"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        android:elevation="8dp"
-        android:orientation="horizontal"
-        android:weightSum="4">
-
-        <!-- History Tab -->
-        <FrameLayout
-            android:id="@+id/tab_history"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground">
-            <ImageView
-                android:id="@+id/icon_history"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_history"
-                android:alpha="0.5"/>
-        </FrameLayout>
-
-        <!-- Videos Tab (Default Active) -->
-        <FrameLayout
-            android:id="@+id/tab_videos"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground">
-            <ImageView
-                android:id="@+id/icon_videos"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_fab_list"
-                android:tint="?android:attr/textColorPrimary"/>
-        </FrameLayout>
-
-        <!-- Folder Tab -->
-        <FrameLayout
-            android:id="@+id/tab_folders"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground">
-            <ImageView
-                android:id="@+id/icon_folders"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_folder"
-                android:alpha="0.5"/>
-        </FrameLayout>
-
-        <!-- Favorites Tab -->
-        <FrameLayout
-            android:id="@+id/tab_favorites"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?android:attr/selectableItemBackground">
-            <ImageView
-                android:id="@+id/icon_favorites"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_heart_empty"
-                android:alpha="0.5"/>
-        </FrameLayout>
-    </LinearLayout>
-
-    <!-- MAIN CONTENT (Grid/List) -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/top_container"
-        android:layout_above="@id/bottom_nav">
-
-        <GridView
-            android:id="@+id/videos_grid"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="8dp"
-            android:clipToPadding="false"
-            android:numColumns="1" 
-            android:horizontalSpacing="0dp"
-            android:verticalSpacing="0dp"
-            android:scrollbars="vertical"
-            android:stretchMode="columnWidth" />
-
-        <!-- Empty State -->
+        android:layout_height="@dimen/_45sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingHorizontal="@dimen/_12sdp">
+        
         <TextView
-            android:id="@+id/txt_empty_state"
+            android:id="@+id/tv_app_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="No videos found."
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="?android:attr/textColorSecondary"
-            android:visibility="gone"/>
-    </FrameLayout>
+            android:text="Video Player"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="@color/primary_text"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"/>
+            
+        <!-- Settings Icon -->
+        <ImageView
+            android:id="@+id/btn_settings"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/exo_ic_settings"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            app:tint="@color/primary_text"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+    </RelativeLayout>
 
-    <!-- Overlay Divider for Nav Bar -->
-    <View
+    <!-- 2. SEARCH BAR -->
+    <EditText
+        android:id="@+id/et_search"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_above="@id/bottom_nav"
-        android:background="#1F000000"/>
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginHorizontal="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="@drawable/bg_search"
+        android:hint="Search videos..."
+        android:textColor="@color/primary_text"
+        android:textColorHint="@color/secondary_text"
+        android:textSize="@dimen/_11ssp"
+        android:paddingStart="@dimen/_12sdp"
+        android:paddingEnd="@dimen/_12sdp"
+        android:maxLines="1"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/top_bar"/>
 
-</RelativeLayout>
+    <!-- 3. VIEW PAGER (Main Content Slide) -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/et_search"
+        app:layout_constraintBottom_toTopOf="@id/tab_indicator_layout"/>
+
+    <!-- 4. TAB INDICATOR (Dots) -->
+    <LinearLayout
+        android:id="@+id/tab_indicator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/miniPlayerLayout"> <!-- মিনি প্লেয়ারের উপরে থাকবে -->
+
+        <ImageView
+            android:id="@+id/dot_1"
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_8sdp"
+            android:src="@drawable/tab_indicator_selected"
+            android:layout_marginEnd="@dimen/_8sdp"/>
+
+        <ImageView
+            android:id="@+id/dot_2"
+            android:layout_width="@dimen/_8sdp"
+            android:layout_height="@dimen/_8sdp"
+            android:src="@drawable/tab_indicator_default"/>
+    </LinearLayout>
+
+    <!-- 5. MINI PLAYER (Fixed at Bottom) -->
+    <RelativeLayout 
+        android:id="@+id/miniPlayerLayout" 
+        android:layout_width="match_parent" 
+        android:layout_height="@dimen/_50sdp" 
+        android:background="@color/secondary_bg" 
+        android:padding="@dimen/_3sdp" 
+        android:elevation="@dimen/_8sdp" 
+        android:visibility="gone" 
+        android:clickable="true"
+        android:focusable="true"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView 
+            android:id="@+id/mini_art" 
+            android:layout_width="@dimen/_42sdp" 
+            android:layout_height="@dimen/_42sdp" 
+            android:src="@drawable/ic_bg_play" 
+            android:layout_centerVertical="true" 
+            android:scaleType="centerCrop"
+            android:background="@drawable/bg_card_rounded"
+            android:clipToOutline="true"/> 
+
+        <LinearLayout 
+            android:layout_width="match_parent" 
+            android:layout_height="wrap_content" 
+            android:layout_toEndOf="@id/mini_art" 
+            android:layout_toStartOf="@+id/controls_mini" 
+            android:layout_centerVertical="true" 
+            android:layout_marginStart="@dimen/_8sdp" 
+            android:orientation="vertical">
+
+            <TextView 
+                android:id="@+id/mini_title" 
+                android:layout_width="match_parent" 
+                android:layout_height="wrap_content" 
+                android:text="Video Title" 
+                android:textColor="@color/primary_text" 
+                android:textStyle="bold" 
+                android:textSize="@dimen/_10ssp" 
+                android:singleLine="true"
+                android:ellipsize="marquee"/>
+
+            <TextView 
+                android:id="@+id/mini_artist" 
+                android:layout_width="match_parent" 
+                android:layout_height="wrap_content" 
+                android:text="Now Playing" 
+                android:textColor="@color/secondary_text" 
+                android:textSize="@dimen/_8ssp" 
+                android:singleLine="true"/>
+        </LinearLayout>
+
+        <LinearLayout 
+            android:id="@+id/controls_mini" 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:layout_alignParentEnd="true" 
+            android:layout_centerVertical="true" 
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            
+            <ImageView 
+                android:id="@+id/mini_prev" 
+                android:layout_width="@dimen/_22sdp" 
+                android:layout_height="@dimen/_22sdp" 
+                android:src="@drawable/exo_icon_previous" 
+                android:padding="@dimen/_4sdp" 
+                app:tint="@color/primary_text"/>
+
+            <ImageView 
+                android:id="@+id/mini_play" 
+                android:layout_width="@dimen/_28sdp" 
+                android:layout_height="@dimen/_28sdp" 
+                android:layout_marginHorizontal="@dimen/_4sdp"
+                android:src="@drawable/exo_icon_pause" 
+                android:padding="@dimen/_2sdp" 
+                app:tint="@color/colorAccent"/>
+
+            <ImageView 
+                android:id="@+id/mini_next" 
+                android:layout_width="@dimen/_22sdp" 
+                android:layout_height="@dimen/_22sdp" 
+                android:src="@drawable/exo_icon_next" 
+                android:padding="@dimen/_4sdp" 
+                app:tint="@color/primary_text"/>
+                
+            <ImageView 
+                android:id="@+id/mini_close" 
+                android:layout_width="@dimen/_20sdp" 
+                android:layout_height="@dimen/_20sdp" 
+                android:src="@drawable/ic_unlock" 
+                android:rotation="45"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:padding="@dimen/_4sdp" 
+                app:tint="@color/secondary_text"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Lottie (Overlay if needed) -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_loading"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        app:lottie_rawRes="@raw/anim_loading" 
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:visibility="gone"       
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

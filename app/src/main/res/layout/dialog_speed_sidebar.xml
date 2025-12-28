@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_100sdp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E6121212" 
+    android:gravity="center_horizontal"
+    android:paddingVertical="@dimen/_20sdp">
+
+    <!-- Title -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Speed"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/_20sdp"/>
+
+    <!-- Speed Options Container -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <LinearLayout
+            android:id="@+id/speed_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            
+            <!-- Items will be added programmatically or you can list them here -->
+            <!-- We will handle this in Java for better control -->
+            
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

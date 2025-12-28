@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_220sdp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_popup_menu"
+    android:padding="@dimen/_15sdp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filter Files"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/_10sdp"/>
+
+    <CheckBox
+        android:id="@+id/check_show_hidden"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show hidden (.nomedia)"
+        android:textColor="@color/secondary_text"
+        android:buttonTint="@color/colorAccent"/>
+
+    <CheckBox
+        android:id="@+id/check_hide_short"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hide videos less than 1min"
+        android:textColor="@color/secondary_text"
+        android:buttonTint="@color/colorAccent"/>
+
+    <Button
+        android:id="@+id/btn_apply_filter"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:text="Apply"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+</LinearLayout>

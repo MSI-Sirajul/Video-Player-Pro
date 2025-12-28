@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_180sdp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_popup_menu"
+    android:paddingVertical="@dimen/_5sdp">
+
+    <!-- 1. Sort By -->
+    <LinearLayout
+        android:id="@+id/menu_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:src="@drawable/ic_sort"
+            app:tint="@color/primary_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sort by"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginStart="@dimen/_12sdp"/>
+    </LinearLayout>
+
+    <!-- 2. View Mode -->
+    <LinearLayout
+        android:id="@+id/menu_view_mode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:src="@drawable/ic_view_mode"
+            app:tint="@color/primary_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Mode"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginStart="@dimen/_12sdp"/>
+    </LinearLayout>
+
+    <!-- Divider -->
+    <View 
+        android:layout_width="match_parent" 
+        android:layout_height="1dp" 
+        android:background="#1AFFFFFF" 
+        android:layout_marginVertical="@dimen/_2sdp"/>
+
+    <!-- 3. Default Home -->
+    <LinearLayout
+        android:id="@+id/menu_default_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:src="@drawable/ic_home"
+            app:tint="@color/primary_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set as Home"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginStart="@dimen/_12sdp"/>
+    </LinearLayout>
+
+    <!-- 4. Filter Files -->
+    <LinearLayout
+        android:id="@+id/menu_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:src="@drawable/ic_filter"
+            app:tint="@color/primary_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filter Files"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginStart="@dimen/_12sdp"/>
+    </LinearLayout>
+
+    <!-- Divider -->
+    <View 
+        android:layout_width="match_parent" 
+        android:layout_height="1dp" 
+        android:background="#1AFFFFFF" 
+        android:layout_marginVertical="@dimen/_2sdp"/>
+
+    <!-- 5. Theme -->
+    <LinearLayout
+        android:id="@+id/menu_theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:src="@drawable/ic_theme"
+            app:tint="@color/primary_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Theme"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginStart="@dimen/_12sdp"/>
+    </LinearLayout>
+
+    <!-- 6. Share -->
+    <LinearLayout
+        android:id="@+id/menu_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:src="@drawable/ic_share"
+            app:tint="@color/primary_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share App"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginStart="@dimen/_12sdp"/>
+    </LinearLayout>
+
+    <!-- 7. App Info -->
+    <LinearLayout
+        android:id="@+id/menu_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="@dimen/_12sdp"
+        android:paddingVertical="@dimen/_8sdp"
+        android:background="?attr/selectableItemBackground">
+
+        <ImageView
+            android:layout_width="@dimen/_18sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:src="@drawable/ic_info"
+            app:tint="@color/primary_text"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="App Info"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/_11ssp"
+            android:layout_marginStart="@dimen/_12sdp"/>
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_25sdp"
+    android:layout_height="@dimen/_160sdp"
+    app:cardBackgroundColor="#CC121212"
+    app:cardCornerRadius="@dimen/_20sdp"
+    app:cardElevation="@dimen/_5sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingVertical="@dimen/_12sdp">
+
+        <!-- Brightness Value Text -->
+        <TextView
+            android:id="@+id/tv_brightness_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/_3sdp"/>
+
+        <!-- Slider Container -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <SeekBar
+                android:id="@+id/seekbar_brightness"
+                android:layout_width="@dimen/_110sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_gravity="center"
+                android:rotation="270"
+                android:max="100"
+                android:progress="50"
+                android:progressDrawable="@drawable/seekbar_track"
+                android:thumb="@drawable/seekbar_thumb"
+                android:splitTrack="false"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:thumbOffset="@dimen/_1sdp"/>
+        </FrameLayout>
+
+        <!-- Brightness Icon (Static) -->
+        <ImageView
+            android:id="@+id/icon_brightness"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:src="@drawable/ic_brightness"
+            app:tint="@color/white"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

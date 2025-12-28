@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    
+    <!-- ডিফল্ট কালার সাদা (কোড থেকে টিন্ট করা হবে) -->
+    <solid android:color="#FFFFFF"/>
+    
+    <!-- কর্নার রাউন্ড ১০-১৫ ডিপি -->
+    <corners android:radius="12dp"/>
+    
+</shape>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_220sdp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_popup_menu"
+    android:padding="@dimen/_15sdp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Set Default Home"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/_14ssp"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/_10sdp"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/home_all_videos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="All Videos Tab"
+            android:textColor="@color/secondary_text"
+            android:buttonTint="@color/colorAccent"
+            android:paddingStart="@dimen/_8sdp"/>
+
+        <RadioButton
+            android:id="@+id/home_folders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Folders Tab"
+            android:textColor="@color/secondary_text"
+            android:buttonTint="@color/colorAccent"
+            android:paddingStart="@dimen/_8sdp"/>
+    </RadioGroup>
+</LinearLayout>
